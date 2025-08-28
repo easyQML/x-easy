@@ -1,8 +1,8 @@
 package("lodash.qml")
-    set_description("The lodash.qml package")
+    set_description("A lodash wrapper for easy use in QML")
 
     add_urls("https://github.com/easyQML/lodash.qml.git")
-    add_versions("4.17", "cd8d9e3d78e16dea28924fcf0796507854b4fa26")
+    add_versions("4.17", "a86a9c2c8207f208246802dc749eab2af33e8fad")
 
     on_install(function (package)
         local configs = {}

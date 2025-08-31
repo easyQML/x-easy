@@ -1,4 +1,4 @@
-package('easy.build')
+package('easy')
 	set_homepage('https://github.com/easyQML/x-easy')
 	set_description('Xmake rules for easy QML development')
 	set_policy('package.install_always', true)

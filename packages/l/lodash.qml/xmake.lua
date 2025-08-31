@@ -1,4 +1,5 @@
 package("lodash.qml")
+	set_homepage('https://github.com/easyQML/lodash.qml')
     set_description("A lodash wrapper for easy use in QML")
 
     add_urls("https://github.com/easyQML/lodash.qml.git")

@@ -1,7 +1,9 @@
 rule('qsb')
 	add_deps('qt.env')
+	add_deps('@easy/qrc')
 	add_orders('@easy/qsb', '@easy/qrc')
 	set_extensions('.comp', '.frag', '.tesc', '.tese', '.vert')
+	
 	on_config(function(target)
 		import('core.base.semver')
 		import('lib.detect.find_file')

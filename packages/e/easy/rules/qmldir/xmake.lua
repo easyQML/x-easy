@@ -1,5 +1,6 @@
 rule('qmldir')
 	set_extensions('.qml', '.js', '.mjs')
+	add_deps('@easy/qrc')
 	add_orders('@easy/qmldir', '@easy/qrc')
 
 	on_config(function (target, opt)

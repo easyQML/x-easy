@@ -245,12 +245,13 @@ function on_config_multiple(target, opt)
 			})
 
 			for _, file in ipairs(files) do
-				target:add('files', file, {
+				local fileconfig = target:fileconfig(file) or {}
+				target:add('files', file, table.join(fileconfig, {
 					rules = '@easy/qrc',
 					qrc_prefix = '/qt/qml',
 					qrc_base_dir = target:values('easy.qmldir.base_dir') or 'qml',
 					always_added = true
-				})
+				}))
 			end
 		end
 	end

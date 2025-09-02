@@ -1,5 +1,6 @@
 rule('qrc')
-	add_orders('qrc', 'qt.qrc')
+	add_deps('qt.qrc')
+	add_orders('@easy/qrc', 'qt.qrc')
 	on_config(function(target)
         local qrcfile = path.join(target:autogendir(), 'rules', '@easy/qrc', target:name() .. '.qrc')
 		target:data_set('easy.qrc.file', qrcfile)

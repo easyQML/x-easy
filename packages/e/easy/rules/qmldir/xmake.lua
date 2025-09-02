@@ -1,6 +1,6 @@
 rule('qmldir')
 	set_extensions('.qml', '.js', '.mjs')
-	add_orders('@easy/qmldir', '@easy/qrc', 'qt.qmlplugin')
+	add_orders('qmldir', '@qrc', 'qt.qmlplugin')
 
 	on_config(function (target, opt)
 		if target:values('easy.qmldir.multiple_modules') then

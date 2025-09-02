@@ -1,5 +1,6 @@
 rule('qsb')
 	add_deps('qt.env')
+	add_orders('qsb', '@qrc')
 	set_extensions('.comp', '.frag', '.tesc', '.tese', '.vert')
 	on_config(function(target)
 		import('core.base.semver')

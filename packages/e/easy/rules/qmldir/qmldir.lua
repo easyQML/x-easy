@@ -174,25 +174,26 @@ function before_build_files(target, sourcebatch, opt)
 
 	-- object/resource declarations
 	for _, file in ipairs(inputs) do
-		local fileconfig = target:fileconfig(file)
+		local fileconfig = target:fileconfig(file) or {}
 
 		local object = {}
 
 		local fname = path.relative(file, path.join(basedir, cfg.module_dir))
+		local object_name = fileconfig.qmldir_name or path.basename(file)
 
 		if fname:match('%.qml') then
 			if _is_singleton(file) then
 				table.insert(object, 'singleton')
 			elseif fileconfig.qmldir_internal then
 				-- a special case where we form the full declaration at once, hence `goto`
-				table.join2(object, {'internal', (path.basename(file) or ''), fname})
+				table.join2(object, {'internal', object_name, fname})
 				goto add_object
 			end
 		end
 
 		if fname:match('%.qml$') or fname:match('%.js$') or fname:match('%.mjs$') then
 			local version = fileconfig.qmldir_version or cfg.version
-			table.join2(object, {(path.basename(file) or ''), version, fname})
+			table.join2(object, {object_name, version, fname})
 		end
 
 		::add_object::
@@ -299,20 +300,21 @@ function before_build_files_multiple(target, sourcebatch, opt)
 			local object = {}
 
 			local fname = path.relative(file, path.join(basedir, mod))
+			local object_name = fileconfig.qmldir_name or path.basename(file)
 
 			if fname:match('%.qml') then
 				if _is_singleton(file) then
 					table.insert(object, 'singleton')
 				elseif fileconfig.qmldir_internal then
 					-- a special case where we form the full declaration at once, hence `goto`
-					table.join2(object, {'internal', (path.basename(file) or ''), fname})
+					table.join2(object, {'internal', object_name, fname})
 					goto add_object
 				end
 			end
 
 			if fname:match('%.qml$') or fname:match('%.js$') or fname:match('%.mjs$') then
 				local version = fileconfig.qmldir_version or cfg.version
-				table.join2(object, {(path.basename(file) or ''), version, fname})
+				table.join2(object, {object_name, version, fname})
 			end
 
 			::add_object::

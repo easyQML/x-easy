@@ -14,6 +14,7 @@ rule('qrc')
 		if batches then
 			resource_files = batches.sourcefiles or {}
 		end
+		table.sort(resource_files)
 
 		local prefix_groups = {}
 		for _, f in ipairs(resource_files) do
